@@ -1,6 +1,5 @@
 import { Component } from 'react';
 import Main from './Main';
-import ThemeContext from '../context/ThemeContext';
 
 class App extends Component {
   state = {
@@ -17,7 +16,6 @@ class App extends Component {
 
   render() {
       return (
-        <ThemeContext.Provider value={this.state.theme}>
           <div className="p-4 h-100 d-flex flex-column">
             <div className="d-flex mb-4 justify-content-center align-items-center">
               <button
@@ -29,7 +27,6 @@ class App extends Component {
             </div>
             <Main />
           </div>
-        </ThemeContext.Provider>
       );
   }
 }
