@@ -1,5 +1,6 @@
 import { Component } from 'react';
 import Main from './Main';
+import ThemeContext from '../context/ThemeContext';
 
 class App extends Component {
   state = {
@@ -8,7 +9,6 @@ class App extends Component {
 
   toggleTheme = () => {
     this.setState( (state) => {
-        console.log( state );
         return {
             theme: state.theme === 'light' ? 'dark' : 'light'
         }
@@ -16,16 +16,21 @@ class App extends Component {
   }
 
   render() {
-    return (
-        <div className="p-4 h-100 d-flex flex-column">
+      return (
+        <ThemeContext.Provider value={this.state.theme}>
+          <div className="p-4 h-100 d-flex flex-column">
             <div className="d-flex mb-4 justify-content-center align-items-center">
-                <button className="btn btn-sm btn-warning" onClick={this.toggleTheme}>
-                    toggle { this.state.theme } theme
-                </button>
+              <button
+                className="btn btn-sm btn-warning"
+                onClick={this.toggleTheme}
+              >
+                toggle {this.state.theme} theme
+              </button>
             </div>
-        <Main theme={ this.state.theme }/>
-      </div>
-    );
+            <Main />
+          </div>
+        </ThemeContext.Provider>
+      );
   }
 }
 
